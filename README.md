@@ -1,8 +1,8 @@
-# My DWM Setup
+# My DWM and ST Setup
 
-This is my own little repository for managing my dwm source files.
+This is my own little repository for managing my dwm and st source files.
 
-## Patches:
+## DWM Patches:
 
 1. tilegap
 1. scratchpad
@@ -11,3 +11,5 @@ This is my own little repository for managing my dwm source files.
 1. centeredmaster
 1. focusonclick
 1. restartsig
+
+## ST Patches:
