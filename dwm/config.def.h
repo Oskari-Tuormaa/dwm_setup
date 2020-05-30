@@ -66,45 +66,61 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+static const char *mutecmd[] = { "/home/oskari/.scripts/toggle_audio" };
+static const char *volupcmd[] = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
+static const char *voldowncmd[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
+static const char *miccmd[] = { "amixer", "set", "Capture", "toggle", NULL };
+static const char *brupcmd[] = { "sudo", "xbacklight", "-inc", "10", NULL };
+static const char *brdowncmd[] = { "sudo", "xbacklight", "-dec", "10", NULL };
+
+#include "push.c"
 
 static Key keys[] = {
 	/* modifier             key    function        argument */
-	{ MODKEY,               33,    spawn,          {.v = dmenucmd } }, // p
-	{ MODKEY|ShiftMask,     36,    spawn,          {.v = termcmd } }, // Return
-	{ MODKEY,               49,    togglescratch,  {.v = scratchpadcmd } }, // Grave
-	{ MODKEY,               56,    togglebar,      {0} },             // b
-	{ MODKEY,               44,    focusstack,     {.i = +1 } },      // j
-	{ MODKEY,               45,    focusstack,     {.i = -1 } },      // k
-	{ MODKEY,               31,    incnmaster,     {.i = +1 } },      // i
-	{ MODKEY,               40,    incnmaster,     {.i = -1 } },      // d
-	{ MODKEY,               43,    setmfact,       {.f = -0.05} },    // h
-	{ MODKEY,               46,    setmfact,       {.f = +0.05} },    // l
-	{ MODKEY,               36,    zoom,           {0} },             // Return
-	{ MODKEY,               23,    view,           {0} },             // Tab
-	{ MODKEY|ShiftMask,     54,    killclient,     {0} },             // c
-	{ MODKEY,               28,    setlayout,      {.v = &layouts[0]} }, // t
-	{ MODKEY,               41,    setlayout,      {.v = &layouts[1]} }, // f
-	{ MODKEY,               58,    setlayout,      {.v = &layouts[2]} }, // m
-	{ MODKEY,               30,    setlayout,      {.v = &layouts[3]} }, // u
-	{ MODKEY,               32,    setlayout,      {.v = &layouts[4]} }, // o
-	{ MODKEY,               65,    setlayout,      {0} },             // space
-	{ MODKEY|ShiftMask,     65,    togglefloating, {0} },             // space
-	{ MODKEY,               39,    togglesticky,   {0} },             // s
-	{ MODKEY,               19,    view,           {.ui = ~0 } },     // 0
-	{ MODKEY|ShiftMask,     19,    tag,            {.ui = ~0 } },     // 0
-	{ MODKEY,               59,    focusmon,       {.i = -1 } },      // comma
-	{ MODKEY,               60,    focusmon,       {.i = +1 } },      // period
-	{ MODKEY|ShiftMask,     59,    tagmon,         {.i = -1 } },      // comma
-	{ MODKEY|ShiftMask,     60,    tagmon,         {.i = +1 } },      // period
-	TAGKEYS(                10,                    0)                 // 1
-	TAGKEYS(                11,                    1)                 // 2
-	TAGKEYS(                12,                    2)                 // 3
-	TAGKEYS(                13,                    3)                 // 4
-	TAGKEYS(                14,                    4)                 // 5
-	TAGKEYS(                15,                    5)                 // 6
-	TAGKEYS(                16,                    6)                 // 7
-	TAGKEYS(                17,                    7)                 // 8
-	TAGKEYS(                18,                    8)                 // 9
+	{ MODKEY,               33,    spawn,          {.v = dmenucmd } },         // p
+	{ MODKEY|ShiftMask,     36,    spawn,          {.v = termcmd } },          // Return
+	{ MODKEY,               49,    togglescratch,  {.v = scratchpadcmd } },    // Grave
+	{ MODKEY,               56,    togglebar,      {0} },                      // b
+	{ MODKEY,               44,    focusstack,     {.i = +1 } },               // j
+	{ MODKEY,               45,    focusstack,     {.i = -1 } },               // k
+	{ MODKEY,               31,    incnmaster,     {.i = +1 } },               // i
+	{ MODKEY,               40,    incnmaster,     {.i = -1 } },               // d
+	{ MODKEY,               43,    setmfact,       {.f = -0.05} },             // h
+	{ MODKEY,               46,    setmfact,       {.f = +0.05} },             // l
+	{ MODKEY,               36,    zoom,           {0} },                      // Return
+	{ MODKEY,               23,    view,           {0} },                      // Tab
+	{ MODKEY|ShiftMask,     54,    killclient,     {0} },                      // c
+	{ MODKEY,               28,    setlayout,      {.v = &layouts[0]} },       // t
+	{ MODKEY,               41,    setlayout,      {.v = &layouts[1]} },       // f
+	{ MODKEY,               58,    setlayout,      {.v = &layouts[2]} },       // m
+	{ MODKEY,               30,    setlayout,      {.v = &layouts[3]} },       // u
+	{ MODKEY,               32,    setlayout,      {.v = &layouts[4]} },       // o
+	{ MODKEY,               65,    setlayout,      {0} },                      // space
+	{ MODKEY|ShiftMask,     65,    togglefloating, {0} },                      // space
+	{ MODKEY,               39,    togglesticky,   {0} },                      // s
+	{ MODKEY,               19,    view,           {.ui = ~0 } },              // 0
+	{ MODKEY|ShiftMask,     19,    tag,            {.ui = ~0 } },              // 0
+	{ MODKEY,               59,    focusmon,       {.i = -1 } },               // comma
+	{ MODKEY,               60,    focusmon,       {.i = +1 } },               // period
+	{ MODKEY|ShiftMask,     59,    tagmon,         {.i = -1 } },               // comma
+	{ MODKEY|ShiftMask,     60,    tagmon,         {.i = +1 } },               // period
+	{ MODKEY|ControlMask,   44,    pushdown,       {0} },                      // j
+	{ MODKEY|ControlMask,   45,    pushup,         {0} },                      // k
+	{ 0,                    121,   spawn,          {.v = mutecmd } },          // Mute
+	{ 0,                    122,   spawn,          {.v = voldowncmd } },       // Audio lower
+	{ 0,                    123,   spawn,          {.v = volupcmd } },         // Audio higher
+	{ 0,                    198,   spawn,          {.v = miccmd} },            // Mic toggle
+	{ 0,                    233,   spawn,          {.v = brupcmd} },           // Brightness up
+	{ 0,                    232,   spawn,          {.v = brdowncmd} },         // Brightness down
+	TAGKEYS(                10,                    0)                          // 1
+	TAGKEYS(                11,                    1)                          // 2
+	TAGKEYS(                12,                    2)                          // 3
+	TAGKEYS(                13,                    3)                          // 4
+	TAGKEYS(                14,                    4)                          // 5
+	TAGKEYS(                15,                    5)                          // 6
+	TAGKEYS(                16,                    6)                          // 7
+	TAGKEYS(                17,                    7)                          // 8
+	TAGKEYS(                18,                    8)                          // 9
 	{ MODKEY|ShiftMask,             24,      quit,           {0} },
 	{ MODKEY|ControlMask|ShiftMask, 24,      quit,           {1} }, 
 };
