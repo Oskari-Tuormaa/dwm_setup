@@ -66,12 +66,14 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
-static const char *mutecmd[] = { "/home/oskari/.scripts/toggle_audio" };
+static const char *mutecmd[] = { "/home/oskari/.scripts/toggle_audio", NULL };
 static const char *volupcmd[] = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
 static const char *voldowncmd[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
 static const char *miccmd[] = { "amixer", "set", "Capture", "toggle", NULL };
 static const char *brupcmd[] = { "sudo", "xbacklight", "-inc", "10", NULL };
 static const char *brdowncmd[] = { "sudo", "xbacklight", "-dec", "10", NULL };
+static const char *rangercmd[] = { "st", "ranger", NULL };
+static const char *firefoxcmd[] = { "firefox", NULL };
 
 #include "push.c"
 
@@ -106,6 +108,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,     60,    tagmon,         {.i = +1 } },               // period
 	{ MODKEY|ControlMask,   44,    pushdown,       {0} },                      // j
 	{ MODKEY|ControlMask,   45,    pushup,         {0} },                      // k
+	{ MODKEY|ShiftMask,     27,    spawn,          {.v = rangercmd} },         // r
+	{ MODKEY|ShiftMask,     41,    spawn,          {.v = firefoxcmd} },        // f
 	{ 0,                    121,   spawn,          {.v = mutecmd } },          // Mute
 	{ 0,                    122,   spawn,          {.v = voldowncmd } },       // Audio lower
 	{ 0,                    123,   spawn,          {.v = volupcmd } },         // Audio higher
