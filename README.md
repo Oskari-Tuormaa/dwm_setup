@@ -11,6 +11,7 @@ This is my own little repository for managing my dwm and st source files.
 1. centeredmaster
 1. focusonclick
 1. restartsig
+1. keycodes
 
 ## ST Patches:
 
