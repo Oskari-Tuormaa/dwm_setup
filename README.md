@@ -13,6 +13,7 @@ This is my own little repository for managing my dwm and st source files.
 1. restartsig
 1. keycodes
 1. push
+1. status2d
 
 ## ST Patches:
 
@@ -21,3 +22,4 @@ This is my own little repository for managing my dwm and st source files.
 1. gruvbox
 1. scrollback
 1. scrollback-mouse
+1. newterm
