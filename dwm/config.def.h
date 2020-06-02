@@ -70,8 +70,10 @@ static const char *mutecmd[] = { "/home/oskari/.scripts/toggle_audio", NULL };
 static const char *volupcmd[] = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
 static const char *voldowncmd[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
 static const char *miccmd[] = { "amixer", "set", "Capture", "toggle", NULL };
-static const char *brupcmd[] = { "sudo", "xbacklight", "-inc", "10", NULL };
-static const char *brdowncmd[] = { "sudo", "xbacklight", "-dec", "10", NULL };
+static const char *brupcmd[] = { "sudo", "xbacklight", "-inc", "1", NULL };
+static const char *brdowncmd[] = { "sudo", "xbacklight", "-dec", "1", NULL };
+static const char *brupcoarsecmd[] = { "sudo", "xbacklight", "-inc", "10", NULL };
+static const char *brdowncoarsecmd[] = { "sudo", "xbacklight", "-dec", "10", NULL };
 static const char *rangercmd[] = { "st", "ranger", NULL };
 static const char *firefoxcmd[] = { "firefox", NULL };
 
@@ -115,6 +117,8 @@ static Key keys[] = {
 	{ 0,                    198,   spawn,          {.v = miccmd} },            // Mic toggle
 	{ 0,                    233,   spawn,          {.v = brupcmd} },           // Brightness up
 	{ 0,                    232,   spawn,          {.v = brdowncmd} },         // Brightness down
+	{ ShiftMask,            233,   spawn,          {.v = brupcoarsecmd} },     // Brightness up
+	{ ShiftMask,            232,   spawn,          {.v = brdowncoarsecmd} },   // Brightness down
 	TAGKEYS(                10,                    0)                          // 1
 	TAGKEYS(                11,                    1)                          // 2
 	TAGKEYS(                12,                    2)                          // 3
