@@ -99,9 +99,9 @@ static const char *colorname[] = {
 
   /* 8 normal colors */
   [0] = "#666666", /* black   */
-  [1] = "#d4d348", /* red     */
+  [1] = "#cc6699", /* red     */
   [2] = "#99cc66", /* green   */
-  [3] = "#cc9966", /* yellow  */
+  [3] = "#cc6666", /* yellow  */
   [4] = "#6699cc", /* blue    */
   [5] = "#9966cc", /* magenta */
   [6] = "#66cc99", /* cyan    */
@@ -109,9 +109,9 @@ static const char *colorname[] = {
 
   /* 8 bright colors */
   [8]  = "#999999", /* black   */
-  [9]  = "#fbfa6e", /* red     */
+  [9]  = "#ff99cc", /* red     */
   [10] = "#ccff99", /* green   */
-  [11] = "#ffcc99", /* yellow  */
+  [11] = "#ff9999", /* yellow  */
   [12] = "#99ccff", /* blue    */
   [13] = "#cc99ff", /* magenta */
   [14] = "#99ffcc", /* cyan    */
