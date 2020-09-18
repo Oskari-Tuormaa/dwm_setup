@@ -79,6 +79,7 @@ static const char *brupcoarsecmd[] = { "sudo", "xbacklight", "-inc", "10", NULL 
 static const char *brdowncoarsecmd[] = { "sudo", "xbacklight", "-dec", "10", NULL };
 static const char *nnncmd[] = { "st", "nnn", NULL };
 static const char *firefoxcmd[] = { "firefox", NULL };
+static const char *screenshotcmd[] = { "gnome-screenshot", "-i", NULL };
 
 #include "push.c"
 
@@ -122,6 +123,7 @@ static Key keys[] = {
 	{ 0,                    232,   spawn,          {.v = brdowncmd} },         // Brightness down
 	{ ShiftMask,            233,   spawn,          {.v = brupcoarsecmd} },     // Brightness up
 	{ ShiftMask,            232,   spawn,          {.v = brdowncoarsecmd} },   // Brightness down
+	{ 0,                    107,   spawn,          {.v = screenshotcmd} },     // Printscr
 	TAGKEYS(                10,                    0)                          // 1
 	TAGKEYS(                11,                    1)                          // 2
 	TAGKEYS(                12,                    2)                          // 3
