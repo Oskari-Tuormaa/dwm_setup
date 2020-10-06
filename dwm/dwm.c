@@ -254,7 +254,7 @@ static pid_t winpid(Window w);
 
 /* variables */
 static const char broken[] = "broken";
-static char stext[1024];
+static char stext[2048];
 static int scanner;
 static int screen;
 static int sw, sh;           /* X display screen geometry width, height */
