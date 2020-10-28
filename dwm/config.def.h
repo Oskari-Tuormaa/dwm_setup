@@ -12,7 +12,7 @@ static const char dmenufont[]       = "Hack:size=10";
 static const char col_gray1[]       = "#282828";
 static const char col_gray2[]       = "#3c3836";
 static const char col_gray3[]       = "#bdae93";
-static const char col_gray4[]       = "#fb1c7";
+static const char col_gray4[]       = "#fbf1c7";
 static const char col_cyan[]        = "#ebdbb2";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
