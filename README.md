@@ -14,6 +14,7 @@ This is my own little repository for managing my dwm and st source files.
 1. push
 1. status2d
 1. swallow
+1. pertag
 
 ## ST Patches:
 
