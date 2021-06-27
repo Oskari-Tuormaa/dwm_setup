@@ -221,7 +221,7 @@ drw_scm_create(Drw *drw, const char *clrnames[], size_t clrcount, unsigned int a
 	for (i = 0; i < clrcount; i++)
 	{
 		drw_clr_create(drw, &ret[i], clrnames[i]);
-	 	ret[i].color.alpha = alpha;
+	 	ret[i].pixel = (ret[i].pixel & 0x00ffffffU) | (alpha << 24);
 	}
 	return ret;
 }
