@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static unsigned int baralpha        = 0xd0;
+static unsigned int baralpha        = 0xc0;
 static unsigned int borderalpha     = OPAQUE;
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 18;       /* gap pixel between windows */
@@ -81,7 +81,7 @@ static const char *brupcoarsecmd[] = { "xbacklight", "-inc", "10", NULL };
 static const char *brdowncoarsecmd[] = { "xbacklight", "-dec", "10", NULL };
 static const char *nnncmd[] = { "st", "nnn", NULL };
 static const char *firefoxcmd[] = { "firefox", NULL };
-static const char *screenshotcmd[] = { "gnome-screenshot", "-i", NULL };
+static const char *screenshotcmd[] = { "maim", "/home/oskari/pix/scr.png", "-sDf", "png", NULL };
 
 #include "push.c"
 
