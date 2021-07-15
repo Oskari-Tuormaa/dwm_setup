@@ -91,8 +91,14 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,     36,    spawn,          {.v = termcmd } },          // Return
 	{ MODKEY,               49,    togglescratch,  {.v = scratchpadcmd } },    // Grave
 	{ MODKEY,               56,    togglebar,      {0} },                      // b
-	{ MODKEY,               44,    focusstack,     {.i = +1 } },               // j
-	{ MODKEY,               45,    focusstack,     {.i = -1 } },               // k
+	// { MODKEY,               44,    focusstack,     {.i = +1 } },               // j
+	// { MODKEY,               45,    focusstack,     {.i = -1 } },               // k
+	{ MODKEY,               44,    focusstackvis,  {.i = +1 } },               // j
+	{ MODKEY,               45,    focusstackvis,  {.i = -1 } },               // k
+	{ MODKEY|ShiftMask,     44,    focusstackhid,  {.i = +1 } },               // j
+	{ MODKEY|ShiftMask,     45,    focusstackhid,  {.i = -1 } },               // k
+	{ MODKEY|ShiftMask,     39,    show,           {0} },                      // s
+	{ MODKEY|ShiftMask,     43,    hide,           {0} },                      // h
 	{ MODKEY,               31,    incnmaster,     {.i = +1 } },               // i
 	{ MODKEY,               40,    incnmaster,     {.i = -1 } },               // d
 	{ MODKEY,               43,    setmfact,       {.f = -0.05} },             // h
