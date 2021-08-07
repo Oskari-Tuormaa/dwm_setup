@@ -442,6 +442,28 @@ main(int argc, char **argv) {
 	imlib_context_set_drawable(RootWindow(dpy,XScreenNumberOfScreen(scr)));	
 	imlib_copy_drawable_to_image(0,0,0,scr->width,scr->height,0,0,1);
 
+#ifdef DARKEN
+	/*Pixelation*/
+	int width = scr->width;
+	int height = scr->height;
+	
+	for(int y = 0; y < height; y++)
+	{
+		for(int x = 0; x < width; x++)
+		{
+			Imlib_Color pixel; 
+			imlib_image_query_pixel(x,y,&pixel);
+			imlib_context_set_color(
+					pixel.red * darken,
+					pixel.green * darken,
+					pixel.blue * darken,
+					pixel.alpha
+				);
+			imlib_image_fill_rectangle(x,y,1,1);
+		}
+	}
+#endif
+
 #ifdef BLUR
 
 	/*Blur function*/
@@ -450,9 +472,6 @@ main(int argc, char **argv) {
 
 #ifdef PIXELATION
 	/*Pixelation*/
-	int width = scr->width;
-	int height = scr->height;
-	
 	for(int y = 0; y < height; y += pixelSize)
 	{
 		for(int x = 0; x < width; x += pixelSize)
@@ -484,9 +503,9 @@ main(int argc, char **argv) {
 			blue = 0;
 		}
 	}
-	
-	
 #endif
+
+
 	/* check for Xrandr support */
 	rr.active = XRRQueryExtension(dpy, &rr.evbase, &rr.errbase);
 
