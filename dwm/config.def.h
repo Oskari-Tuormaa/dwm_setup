@@ -81,7 +81,7 @@ static const char *brupcoarsecmd[] = { "xbacklight", "-inc", "10", NULL };
 static const char *brdowncoarsecmd[] = { "xbacklight", "-dec", "10", NULL };
 static const char *nnncmd[] = { "st", "nnn", NULL };
 static const char *firefoxcmd[] = { "firefox", NULL };
-static const char *screenshotcmd[] = { "maim", "/home/oskari/pix/scr.png", "-sDf", "png", NULL };
+static const char *screenshotcmd[] = { "screenshot", NULL };
 
 #include "push.c"
 
