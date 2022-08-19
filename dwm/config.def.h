@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static unsigned int baralpha        = 0xe0;
+static unsigned int baralpha        = OPAQUE;
 static unsigned int borderalpha     = OPAQUE;
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 16;       /* gap pixel between windows */
@@ -33,11 +33,12 @@ static const Rule rules[] = {
      *	WM_CLASS(STRING) = instance, class
      *	WM_NAME(STRING) = title
      */
-    /* class     instance  title           tags mask  isfloating  monitor */
-    { "st",      NULL,     NULL,           0,         0,          -1 },
-    { "Gimp",    NULL,     NULL,           0,         1,          -1 },
-    { "Steam",   NULL,     NULL,           0,         1,          -1 },
-    { NULL,      NULL,     "Event Tester", 0,         1,          -1 }, /* xev */
+    /* class        instance  title           tags mask  isfloating  monitor */
+    { "st",         NULL,     NULL,           0,         0,          -1 },
+    { "Gimp",       NULL,     NULL,           0,         1,          -1 },
+    { "Steam",      NULL,     NULL,           0,         1,          -1 },
+    { "Matplotlib", NULL,     NULL,           0,         1,          -1 },
+    { NULL,         NULL,     "Event Tester", 0,         1,          -1 }, /* xev */
 };
 
 /* layout(s) */
@@ -67,21 +68,25 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray2, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, NULL };
+static const char *termcmd[]  = { "kitty", NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
-static const char *mutecmd[] = { "toggle_audio", NULL };
-static const char *volupcmd[] = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
-static const char *voldowncmd[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
+static const char *scratchpadcmd[] = { "kitty", "-T", scratchpadname, NULL };
+// static const char *mutecmd[] = { "amixer", "-q", "set", "Master", "toggle", NULL };
+// static const char *volupcmd[] = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
+// static const char *voldowncmd[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
+static const char *mutecmd[]    = { "audioctrl", "toggle", NULL };
+static const char *volupcmd[]   = { "audioctrl", "5%+", "unmute", NULL };
+static const char *voldowncmd[] = { "audioctrl", "5%-", "unmute", NULL };
 static const char *miccmd[] = { "amixer", "set", "Capture", "toggle", NULL };
 static const char *brupcmd[] = { "xbacklight", "-inc", "1", NULL };
 static const char *brdowncmd[] = { "xbacklight", "-dec", "1", NULL };
 static const char *brupcoarsecmd[] = { "xbacklight", "-inc", "10", NULL };
 static const char *brdowncoarsecmd[] = { "xbacklight", "-dec", "10", NULL };
-static const char *nnncmd[] = { "st", "nnn", NULL };
+static const char *nemocmd[] = { "nemo", NULL };
 static const char *firefoxcmd[] = { "firefox", NULL };
 static const char *screenshotcmd[] = { "screenshot", NULL };
+static const char *bluemancmd[] = { "blueman-manager", NULL };
 
 #include "push.c"
 
@@ -121,7 +126,8 @@ static Key keys[] = {
     { MODKEY|ShiftMask,     60,    tagmon,         {.i = +1 } },               // period
     { MODKEY|ControlMask,   44,    pushdown,       {0} },                      // j
     { MODKEY|ControlMask,   45,    pushup,         {0} },                      // k
-    { MODKEY|ShiftMask,     57,    spawn,          {.v = nnncmd} },            // n
+    { MODKEY|ShiftMask,     57,    spawn,          {.v = nemocmd} },           // n
+    { MODKEY|ShiftMask,     56,    spawn,          {.v = bluemancmd} },        // b
     { MODKEY|ShiftMask,     41,    spawn,          {.v = firefoxcmd} },        // f
     { 0,                    121,   spawn,          {.v = mutecmd } },          // Mute
     { 0,                    122,   spawn,          {.v = voldowncmd } },       // Audio lower
